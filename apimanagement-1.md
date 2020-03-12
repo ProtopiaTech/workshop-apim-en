@@ -1,6 +1,6 @@
 # API Management - Hands-on Lab Script - part 1
 
-Mark Harrison : checked & updated 10 March 2020 - original 1 Nov 2017
+Mark Harrison : checked & updated 12 March 2020 - original 1 Nov 2017
 
 ![](Images/APIM.png)
 
