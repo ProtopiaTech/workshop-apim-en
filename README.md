@@ -1,6 +1,6 @@
 # API Management - Hands-on Lab Script
 
-Mark Harrison : 1 Nov 2017
+Mark Harrison : checked & updated 10 March 2020 - original 1 Nov 2017
 
 ![](Images/APIM.png)
 
@@ -11,4 +11,4 @@ Mark Harrison : 1 Nov 2017
 - [Part 5 - API Proxy to other Azure services](apimanagement-5.md)
 
 ---
-<http://github.markharrison.io>
+<http://github.com/markharrison>

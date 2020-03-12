@@ -1,12 +1,12 @@
 # API Management - Hands-on Lab Script - part 4
 
-Mark Harrison : 1 Nov 2017
+Mark Harrison : checked & updated 10 March 2020 - original 1 Nov 2017
 
 ![](Images/APIM.png)
 
 - [Part 1 - Create an API Management instance](apimanagement-1.md)
 - [Part 2 - Developer Portal](apimanagement-2.md)
-- [Part 3 - Administration](apimanagement-3.md) 
+- [Part 3 - Administration](apimanagement-3.md)
 - [Part 4 - Policy Expressions](apimanagement-4.md) ... this document
 - [Part 5 - API Proxy to other Azure services](apimanagement-5.md)
 
@@ -15,6 +15,8 @@ Mark Harrison : 1 Nov 2017
 Policy Expressions are used to control traffic to and modify the behavior of the Backend API. Using C# statements and an ability to access the API context, as well as your API Management service configuration, Policy Expressions are a powerful way to modify the behavior of the API at runtime.
 
 <https://docs.microsoft.com/en-us/azure/api-management/api-management-policies>
+
+We had a brief look earlier at setting CORS policies and caching.  Lets dive in a bit deeper.
 
 ### Configuration
 
@@ -35,7 +37,9 @@ Policy Expressions are used to control traffic to and modify the behavior of the
 ![](Images/APIMFrontendFormEditor.png)
 
 - Edit Inbound processing / Outbound processong / Backend
-  - This gives a choice of the 'Code View' editor or Forms-based editor
+  - Have a choice of the 'Code View' editor or selecting an [Add Policy] Form
+
+![](Images/APIMInboundProcessing.png)
 
 ![](Images/APIMInboundCodeEditor.png)
 
@@ -51,10 +55,9 @@ Policy Expressions are used to control traffic to and modify the behavior of the
 
 ```xml
 <!-- Inbound -->
-<cache-lookup vary-by-developer-groups="false" vary-by-developer="false">
-    <vary-by-header>Accept</vary-by-header>
-    <vary-by-header>Accept-Charset</vary-by-header>
-</cache-lookup>
+  <cache-lookup vary-by-developer="false"
+      vary-by-developer-groups="false"
+      downstream-caching-type="none" />
 
 <!-- Outbound -->
 <cache-store duration="15" />
@@ -67,7 +70,7 @@ Frequent requirement is to transform content
 - Remember the Calc API ... this returned XML
 - Open the Calculator API 'Code View'
 - Add the outbound policy to transform response body to JSON
-- Invoke the API and examine the response
+- Invoke the API and examine the response - note that its now JSON
 
 ```xml
 <!-- Outbound -->
@@ -87,7 +90,9 @@ Named Values (aka Properties) are a collection of key/value pairs that are globa
 
 - Open the Calculator API 'Code View'
 - Add the inbound policy to add the header
-- Invoke the API and examine the response
+- Test the API within the Azure Management portal
+  - Add a Header called [Ocp-Apim-Trace] set to true
+  - Examine the response and the [Trace] tab
 
 ```xml
 <!-- Inbound -->
@@ -98,12 +103,19 @@ Named Values (aka Properties) are a collection of key/value pairs that are globa
 
 ![](Images/APIMTraceNV.png)
 
+![](Images/APIMTraceNV2.png)
+
+- Go to the URL specified in the HTTP Response - [ocp-apim-trace-location]
+  - Note that the [timeheader] field has been sent to the backend API
+
+![](Images/APIMTraceNV3.png)
+
 #### Delete response headers
 
 Frequent requirement is to remove headers - example those that might leak potential security information
 
 - Open the Calculator API 'Code View'
-- Add the outbound policy to add the header ... the double curly brackets refer to a Named Value
+- Add the outbound policy to delete the response headers
 - Invoke the API and examine the response
 
 ```xml
@@ -112,7 +124,11 @@ Frequent requirement is to remove headers - example those that might leak potent
 <set-header name="x-powered-by" exists-action="delete" />
 ```
 
+Before:
 ![](Images/APIMResponseDeleteHeaders.png)
+
+After policy applied:
+![](Images/APIMResponseDeleteHeaders2.png)
 
 #### Amend what's passed to the backend
 
@@ -135,18 +151,26 @@ More info <https://docs.microsoft.com/en-us/azure/api-management/api-management-
 </set-header>
 ```
 
+Note - this trace below was from the Developer portal.  I got errors when testing from the Azure Management portal, as the [User Id] is unable to be evaluated.
+
 ![](Images/APIMTraceAmendBackend.png)
 
 #### Transformation - conditional
 
 Another C# example to manipulate the response body, depending on the product - with this expression a subscriber of the Starter product will only get back a subset of the information.  Other products will get the full information.
 
-- Open the Star Wars API | GetPeople API 'Code View'
+- Open the Star Wars API | GetPeopleById operation 'Code View'
 - Add the outbound policy to conditionally change the response body
 - Invoke the API using the Starter product key and examine the response
 - Invoke the API using the Unlimited product key and examine the response
 
+Not the inbound header is set to ensure that the Response Body is not encoded as that causes the JSON parsing to fail.
+
 ```xml
+<!-- Inbound -->
+        <set-header name="Accept-Encoding" exists-action="override">
+            <value>deflate</value>
+        </set-header>
 <!-- Outbound -->
 <choose>
     <when condition="@(context.Response.StatusCode == 200 && context.Product.Name.Equals("Starter"))">
@@ -179,17 +203,13 @@ JSON Web Tokens are an open, industry standard method for representing claims se
   - <https://jwt.io/> to create a JWT
     - Use a key that matches the value in the policy expression e.g. 123412341234123412341234
   - <https://www.unixtimestamp.com/index.php>
-    - i.e. 01/01/2018  = 1514764800
+    - i.e. 01/01/2020  = 1577836800
 
 ![](Images/APIMJWT.png)
 
 - Open the Calculator API 'Code View'
 - Add the inbound policy to validate that JWT is valid
   - Example shows the use of variables in an expression - useful if a value is repeated
-- Invoke the API ... should get a 401 Unauthorized error
-- Invoke the API with a response header ... should get a 200 success
-  - Name: Authorization
-  - Value: bearer `JWT token`  (space between bearer and token)
 
 ```xml
 <!-- Inbound -->
@@ -202,17 +222,21 @@ JSON Web Tokens are an open, industry standard method for representing claims se
 
 ```
 
-No JWT
+- Invoke the API ... should get a [401 Unauthorized error]
+- Invoke the API with a request header containing the security token (got above from <https://jwt.io/>) ... should get a 200 success
+  - Name: Authorization
+  - Value: bearer `JWT token`  (space between bearer and token)
+
+No JWT:
 
 ![](Images/APIMRequestJWTnone.png)
 
-![](Images/APIMResponseJWTnone.png)
-
 Valid JWT in header:
 
-![](Images/APIMRequestJWTvalid.png)
+Note the bearer token in the Request payload.
+Make sure your JWT token has an expiry date in the future.
 
-![](Images/APIMResponseJWTvalid.png)
+![](Images/APIMRequestJWTvalid.png)
 
 #### JSON Web Tokens (JWT) - check a claim exists
 
@@ -224,21 +248,28 @@ Valid JWT in header:
 
 ```xml
 <!-- Inbound -->
-<validate-jwt>
-    <!--  signing-keys as above  -->
-    <required-claims>
-        <claim name="admin" match="any">
-            <value>true</value>
-        </claim>
-    </required-claims>
-</validate-jwt>
+        <set-variable name="signingKey" value="123412341234123412341234" />
+        <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized">
+            <issuer-signing-keys>
+                <key>@((string)context.Variables["signingKey"])</key>
+            </issuer-signing-keys>
+            <required-claims>
+                <claim name="admin" match="any">
+                    <value>true</value>
+                </claim>
+            </required-claims>
+        </validate-jwt>
 ```
 
 Checking for admin claim:
 
 ![](Images/APIMRequestJWTclaimvalid.png)
 
-Checking for admin claim:
+Checking for adminx claim:
+
+```xml
+                <claim name="adminx" match="any">
+```
 
 ![](Images/APIMRequestJWTclaiminvalid.png)
 
@@ -263,6 +294,8 @@ Checking for admin claim:
     </value>
 </set-header>
 ```
+
+![](Images/APIMHeaderJWTClaimBackend.png)
 
 ![](Images/APIMTraceJWTClaimBackend.png)
 
@@ -305,16 +338,17 @@ For Microsoft Teams
 
 ![](Images/APIMTeamsWebHook2.png)
 
+![](Images/APIMTeamsWebHook3.png)
+
+![](Images/APIMTeamsWebHook4.png)
+
 - Format the required payload ... the payload sent to a Teams channel is of the MessageCard JSON schema format
-  - <https://msdn.microsoft.com/en-us/microsoft-teams/connectors>
+  - <https://docs.microsoft.com/en-us/microsoftteams/platform/task-modules-and-cards/cards/cards-reference>
   - <https://messagecardplayground.azurewebsites.net/>
 
 - Open the Calculator API 'Code View'
-- Add the inbound policy
+- Add the outbound policy
   - replace the webhook and payload as required
-  - for demo purposes, amend the condition so it always fires i.e. `StatusCode = 200`
-- Invoke the API ... should get a 200 success
-- Look for a message in the Teams channel
 
 ```xml
 <!-- Outbound -->
@@ -344,7 +378,15 @@ For Microsoft Teams
 
 ```
 
-Received in the Teams channel:
+- for demo purposes, amend the condition so it always fires i.e. `StatusCode = 200`
+- Invoke the API ... should get a 200 success
+- Look for a message in the Teams channel
+
+```xml
+    <when condition="@(context.Response.StatusCode == 200)">
+```
+
+Received notification in the Teams channel:
 
 ![](Images/APIMTeamsMessage.png)
 
@@ -354,7 +396,7 @@ Using the log-to-eventhub policy enables sending any details from the request an
 
 The Azure Event Hubs is designed to ingress huge volumes of data, with capacity for dealing with a far higher number of events. This ensures that your API performance will not suffer due to the logging infrastructure.
 
-https://docs.microsoft.com/en-us/azure/api-management/api-management-log-to-eventhub-sample
+<https://docs.microsoft.com/en-us/azure/api-management/api-management-log-to-eventhub-sample>
 
 #### Cross-origin resource sharing (CORS)
 
@@ -364,11 +406,27 @@ The cors policy adds cross-origin resource sharing (CORS) support to an operatio
 
 ```xml
 <!-- Inbound -->
-<cors>
-    <allowed-origins>
-        <origin>*</origin>
-    </allowed-origins>
-</cors>
+    <cors>
+        <allowed-origins>
+            <origin>*</origin>
+        </allowed-origins>
+        <allowed-methods>
+            <method>GET</method>
+            <method>POST</method>
+            <method>PUT</method>
+            <method>DELETE</method>
+            <method>HEAD</method>
+            <method>OPTIONS</method>
+            <method>PATCH</method>
+            <method>TRACE</method>
+        </allowed-methods>
+        <allowed-headers>
+            <header>*</header>
+        </allowed-headers>
+        <expose-headers>
+            <header>*</header>
+        </expose-headers>
+    </cors>
 ```
 
 #### Mock responses
@@ -376,10 +434,14 @@ The cors policy adds cross-origin resource sharing (CORS) support to an operatio
 Mocking provides a way to return sample responses even when the backend is not available. This enables app developers to not be help up if the backend is under development.
 
 - Open the Star Wars API and select [Add Operation]
-- Create a new operation called GetFilms
+- Create a new operation called GetFilm
 - In the Response configuration tab, set Sample data as below
 
 ![](Images/APIMMockingFrontend.png)
+
+![](Images/APIMMockingFrontend2.png)
+
+![](Images/APIMMockingFrontend3.png)
 
 ```json
 {
@@ -392,6 +454,14 @@ Mocking provides a way to return sample responses even when the backend is not a
 - Enable mocking and specify a 200 OK response status code
 
 ![](Images/APIMMockingInbound.png)
+
+- Select the 200 OK response ... Save
+
+![](Images/APIMMockingInbound2.png)
+
+- Mocking is now enabled
+
+![](Images/APIMMockingInbound3.png)
 
 - Invoke the API ... should get a 200 success with the mocked data
 

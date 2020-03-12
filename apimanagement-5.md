@@ -1,6 +1,6 @@
 # API Management - Hands-on Lab Script - part 5
 
-Mark Harrison : 1 Nov 2017
+Mark Harrison : checked & updated 10 March 2020 - original 1 Nov 2017
 
 ![](Images/APIM.png)
 
@@ -30,41 +30,29 @@ Example:
     return req.CreateResponse(HttpStatusCode.OK, strColors[rInt]);
 ```
 
+Lets add the function to API Managament.   In the API blade select [+Add API] and the [Function App] tile
 
-Need to generate a OpenAPI (Swagger) definition file
+![](Images/APIMFunctionAddAPI.png)
 
-- Select the [Integrate] tab of the function
-- Change [Allowed HTTP Methods] field to [Select Methods]
-- Change [Selected HTTP methods] to just allow GET
-- For Demo purpose - turn off authentication ... Change [Authorization level] to [Anonymous]
+- Select the [Browse] button to get a list of Functions in the subscription
 
-![](Images/APIMFunctionIntegrate.png)
+![](Images/APIMFunctionAddBrowse.png)
 
-- Go to Platform Fetaures and select [API definition]
+- Select the function
 
-![](Images/APIMFunctionPlatFeatures.png)
+![](Images/APIFunctionSelect.png)
 
-- On the API definition source, select [Function]
-- Then select [Generate API definition template]
+- Amend the Names / Descriptions, URL suffix and select the Products
 
-![](Images/APIMFunctionGenAPIDef.png)
+![](Images/APIMFunctionCreate.png)
 
-- Whilst in Platform Features, set CORS to allow access from anywhere
-  - This is needed later, so we can invoke the function from a Logic App.  Also means we can use it from the Color Website we used earlier
+- As previously add CORS policy
 
-![](Images/APIMFunctionCORS.png)
+- Validate the function works - either from the Azure management portal or the developer portal
 
-- Return to the API blade in API Management
-- Add a new API - select [Functions App]
-- Use the [Browser] button to see list of available Ffunctions within the subscription
+![](Images/APIMFunctionTest1.png)
 
-![](Images/APIMFunctionAdd.png)
-
-![](Images/APIMFunctionAPI.png)
-
-- Invoke the API ... should get a 200 success
-
-![](Images/APIMResponseFunction.png)
+![](Images/APIMFunctionTest2.png)
 
 ### Azure Logic Apps
 
@@ -84,25 +72,37 @@ Use the following sample message to generate the schema of the Request body payl
 }
 ```
 
-- Return to the API blade in API Management
-- Add a new API - select [Logic Apps]
-- Use the [Browser] button to see list of available Logic Apps within the subscription
+Lets add the function to API Managament. In the API blade select [+Add API] and the [Logic App] tile
 
-![](Images/APIMLogicAppAdd.png)
+![](Images/APIMLogicAppAddAPI.png)
 
-![](Images/APIMLogicAppAPI.png)
+- Select the [Browse] button to get a list of Logic Apps in the subscription
 
-- Invoke the API ... should get a 200 success
-  - Set the message in the payload to conform to the JSON schema
-  - Ensure `Content-Type` is set to `application/json`
+![](Images/APIMLogicAppAddBrowse.png)
 
-![](Images/APIMRequestLogicApp.png)
+- Select the Logic App
 
-![](Images/APIMResponseLogicApp.png)
+![](Images/APILogicAppSelect%20.png)
 
-- Check for generated email
+- Amend the Names / Descriptions, URL suffix  and select the Products
 
-![](Images/APIMEmailLogicApp.png)
+![](Images/APIMLogicAppCreate.png)
+
+ As previously add CORS policy
+
+- Validate the Logic App works - either from the Azure management portal or the developer poral
+
+![](Images/APIMLogicAppTest1.png)
+
+![](Images/APIMLogicAppTest2.png)
+
+- Check the Logic App audit
+
+![](Images/APIMLogicAppTest3.png)
+
+- Check the email was sent
+
+![](Images/APIMLogicAppTest4.png)
 
 ---
-[Home](apimanagement-0.md) | [Prev](apimanagement-4.md)  
+[Home](apimanagement-0.md) | [Prev](apimanagement-4.md)

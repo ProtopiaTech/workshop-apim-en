@@ -1,6 +1,6 @@
 # API Management - Hands-on Lab Script - part 3
 
-Mark Harrison : 1 Nov 2017
+Mark Harrison : checked & updated 10 March 2020 - original 1 Nov 2017
 
 ![](Images/APIM.png)
 
@@ -11,6 +11,8 @@ Mark Harrison : 1 Nov 2017
 - [Part 5 - API Proxy to other Azure services](apimanagement-5.md)
 
 ## Administration
+
+API Management administration is done using the Azure management portal.
 
 ### Identity
 
@@ -26,6 +28,8 @@ Mark Harrison : 1 Nov 2017
 
 ![](Images/APIMUserActivateSub.png)
 
+![](Images/APIMUserActivateSub2.png)
+
 #### Federation
 
 User identity can federate with Azure AD and social identity providers.
@@ -39,9 +43,12 @@ Example, for Azure AD
 ![](Images/APIMFederationAzureAD.png)
 
 - Config API Management to federate with Azure AD
-  - Make note of Return URL
-- Config Azure AD
-  - Create APP - specify the Return URL
+Redirect  
+  - Make note of the Redirect URL
+
+- Switch to the Azure AD blade to config an app
+  - Create a new registration
+  - Configure the App - specify the Redirect URL ... and Register
 
 ![](Images/APIMFederationCreateApp.png)
 
@@ -55,32 +62,48 @@ Example, for Azure AD
 
 ![](Images/APIMFederationCreateKey.png)
 
-- Return to the Add Identity Provider blade
+![](Images/APIMFederationCreateKey2.png)
+
+- Select Authentication and then select [ID tokens] under Implicit Grant ... Save
+
+![](Images/APIMFederationAuthentication.png)
+
+- Return to the APIM Configuration | Add Identity Provider blade
   - Enter the Application Id and Key
   - Enter the AD tenants that you want to federate with
 
 ![](Images/APIMFederationAzureAD2.png)
 
-- Return to Developer portal and notice the federation option now appears at the bottom
+![](Images/APIMFederationAzureAD3.png)
+
+- As administrator return to Developer portal and republish the portal website
+
+- As an unauthenticated user - return to the Developer portal | Sign In Page - and notice the Azure AD federation option now appears at the bottom
   - Create an account with a user from Azure AD
   - Sign in with an Azure AD account
 
 ![](Images/APIMFederationSignup.png)
 
+![](Images/APIMFederationSignup2.png)
+
+![](Images/APIMFederationSignup3.png)
+
+![](Images/APIMFederationSignup4.png)
+
 #### API authentication
 
-Users need a key to successfully invoke the API
+Developers need a key to successfully invoke the API
 
 - The keys for the subscribed products can be seen in the Profile screen
 - The Unlimited subscription is now active (we approved the request)
 
 ![](Images/APIMDevKeys2.png)
 
-Also support for OAuth2 & OpenId Connect
+There is also support for OAuth2 & OpenId Connect to enable user authentication.
 
 ![](Images/APIMOAuthBlade.png)
 
-Support for JSON Web Token (JWT) - see cover later
+Support for JSON Web Token (JWT) and to ensure it is valid and to make decisions based on the claims in the token ... this is addressed later
 
 Client certificates can be uploaded, and used to authenticate API Management with the backend API infrastructure
 
@@ -112,7 +135,7 @@ Uses Traffic Manager 'performance routing' methods.
 
 Changes can be made to the service instance by changing a setting in the publisher portal, using a PowerShell cmdlet, or making a REST API call.
 
-Can also manage your service instance configuration using Git, enabling service management scenarios such as Configuration versioning, Bulk configuration changes and Familiar Git toolchain and workflow.
+Can also manage your service instance configuration using Git, enabling service management scenarios such as configuration versioning, bulk configuration changes and familiar Git toolchain and workflow.
 
 - Look at Git configuration
   - Generate password
@@ -122,9 +145,13 @@ Can also manage your service instance configuration using Git, enabling service 
 
 ![](Images/APIMRepositoryBlade.png)
 
-- Pull to local machine
+- Pull to local machine ... will need to enter credentials
 
 ![](Images/APIMGitClone.png)
+
+![](Images/APIMGitClone2.png)
+
+![](Images/APIMGitClone3.png)
 
 - Make change to a Product description
 
@@ -173,13 +200,17 @@ A product contains one or more APIs as well as a usage quota and the terms of us
 ![](Images/APIMProducts.png)
 
 - Add new product - for example a Gold tier
-  - Assign products | set Visibility | Publish
+  - Assign APIs | set Visibility | Create
 
 ![](Images/APIMAddProduct.png)
 
+![](Images/APIMAddProduct2.png)
+
+- Set Access Controls to allow developer access
+
 ![](Images/APIMAddProductsAccess.png)
 
-- See the new product in the Developer portal
+- See the new Gold Tier product in the Developer portal
 
 ![](Images/APIMAddProductsDevPortal.png)
 
@@ -188,7 +219,7 @@ A product contains one or more APIs as well as a usage quota and the terms of us
 - Look at policy for Starter product
 - Notice the rate limits / quota constraints
 - Policies can be at the Product level, API level or Operation Level
-  - Later will drill deeper into API policy expressions
+  - We will later drill deeper into API policy expressions
 
 ![](Images/APIMProductStarter.png)
 
@@ -210,12 +241,15 @@ An API represents a set of operations that can be invoked. New APIs are defined 
 
 #### Add API from scratch
 
-This will use the Start Wars API <http://swapi.co>
+This will use the Start Wars API <https://swapi.co>
 
 - Select [Add Blank API]
-  - Enter name and description
+  - Select the [Full] option at the top of the dialog
+  - Enter Display name, name and description
+  - Enter back end Web Service - this is <https://swapi.co/api>
   - Set API URL suffice to sw
-  - Assign Products
+  - Assign Products - Starter and Unlimited
+  - Create
 
 ![](Images/APIMAddBlankAPI.png)
 
@@ -233,18 +267,38 @@ This will use the Start Wars API <http://swapi.co>
 
 ![](Images/APIMAddSWOperations.png)
 
-- Select [Start Wars API] in Developer Portal
+To get this to work from the Developer portal - we must overcome the CORS.  Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served.   This involves setting up a Policy - a topic that we explain in more depth in the next section.
+
+- Select the Star Wars API | All Operations ... and in the Inbound processing select [Add policy]
+
+![](Images/APIMSWCORS1.png)
+
+- Select [CORS]
+
+![](Images/APIMCORS2.png)
+
+- Define the Policy as in the screenshot - this config is suitable for demo purposes only and ensures we are not hampered by CORS
+
+![](Images/APIMCORS3.png)
+
+- Once the policy had been Saved, we can inspect it in [Code View]
+
+![](Images/APIMCORS4.png)
+
+- Switch now to the Developer Portal
+  - Signin as a developer with a subscription
+  - Select [Start Wars API]
 
 ![](Images/APIMSWTryIt1.png)
 
-- Try the "GetPeople"
-- Try the "GetPeopleById" ... with id = 2
+- Try the "GetPeople" operation
+- Try the "GetPeopleById" operation ... with id = 2
 
 ![](Images/APIMSWTryIt2.png)
 
 - Examine Response and more detailed Trace information
   - Response 200 successful
-  - Information about C-3PO in the Response Body Payload.
+  - Information about C-3PO in the Response body payload.
 
 ![](Images/APIMSWTryIt3.png)
 
@@ -256,20 +310,26 @@ The OpenAPI specification (aka Swagger) is a definition format to describe RESTf
 
 <https://swagger.io>
 
+As a demo we shall use an API that offers a simple calculator service
+
 - Calc API
   - <http://calcapi.cloudapp.net/>
 
 ![](Images/APIMCalcAPI.png)
 
 - Goto API blade and select [Add OpenAPI Specification]
-- Import swagger <http://calcapi.cloudapp.net/calcapi.json>
-  - Use `calc` in URL for API
+- Specify swagger URL <http://calcapi.cloudapp.net/calcapi.json>
+  - Some of the fields will be populated from the swagger definition
+  - Use "calc" in URL for API
+  - Add products Starter and Unlimited
 
 ![](Images/APIMAddCalcAPI1.png)
 
 ![](Images/APIMAddCalcAPI2.png)
 
-- Look at Calculator API in dev portal
+- As above set a CORS policy to allow access from the Developer portal
+
+- Look at Calculator API in Developer portal
   - Try the Add Two Integers operation
 - Look at Response / Trace
 
@@ -277,28 +337,42 @@ The OpenAPI specification (aka Swagger) is a definition format to describe RESTf
 
 ![](Images/APIMCalcTryIt2.png)
 
+We can inspect / edit the Open API definition by selecting Edit icon from the Frontend block:
+
+![](Images/APIMCalcSwagger.png)
+
+![](Images/APIMCalcSwagger2.png)
+
+Another example - the Colors API
+
 - Colors API
-  - <http://markcolorapi.azurewebsites.net/swagger/>
+  - <https://markcolorapi.azurewebsites.net/swagger/>
 
 ![](Images/APIMColorAPI.png)
 
-- Import swagger from > <http://markcolorapi.azurewebsites.net/swagger/v1/swagger.json>
-  - Use `color` in URL for API
+- Import swagger from > <https://markcolorapi.azurewebsites.net/swagger/v1/swagger.json>
+  - Use "color" in URL for API
 
 ![](Images/APIMAddColorAPI1.png)
 
 ![](Images/APIMAddColorAPI2.png)
 
+Remember to set a CORS policy.
+
 The swagger file did not contain the name of the host so need to update
 
 - Select [Settings]
-- Amend Web Service URL to `https://markcolorapi.azurewebsites.net`
+- Amend Web Service URL to <https://markcolorapi.azurewebsites.net>
 
 ![](Images/APIMAddColorAPI3.png)
 
-- Look at Color API in dev portal
+We can test this from the [Test] tab
+
+![](Images/APIMAddColorAPI.png)
+
+- Switch to the Developer portal and look at Color API
   - Try the RandomColor operation
-- Look at Response / Trace
+- Look at Response / Trace ... see the random color returned
 
 ![](Images/APIMColorTryIt1.png)
 
@@ -306,18 +380,18 @@ The swagger file did not contain the name of the host so need to update
 
 #### Rate limit
 
-Use website <http://markcolorweb.azurewebsites.net> - this displays 500 lights.  Each light will at random intervals make a call to the RandomColor API - and then display the color returned.
+Use website <https://markcolorweb.azurewebsites.net> - this displays 500 lights.  Each light will at random intervals make a call to the RandomColor API - and then display the color returned.
 
 ![](Images/APIMColorWeb.png)
 
-There is a configution page to specify the API endpoint
+Via the menu - there is a configution page to specify the API endpoint
 
 ![](Images/APIMColorWebConfig.png)
 
 - Open Developer portal and get API keys for Starter and Unlimited products
 - Open Notepad - make note of URLs
-  - <https://markharrisonapi.azure-api.net/color/api/RandomColor?key=> *Starter-Key*
-  - <https://markharrisonapi.azure-api.net/color/api/RandomColor?key=> *Unlimited-Key*
+  - <https://markharrison.azure-api.net/color/api/RandomColor?key=> *Starter-Key*
+  - <https://markharrison.azure-api.net/color/api/RandomColor?key=> *Unlimited-Key*
 
 ![](Images/APIMColorWebKeys.png)
 
@@ -342,11 +416,15 @@ There is a configution page to specify the API endpoint
 
 API Management can be configured for response caching - this can significantly reduce API latency, bandwidth consumption, and web service load for data that does not change frequently.
 
-- Using the original Publisher portal - set a caching on the RandomColor API call
+- Using the original Azure Management portal - set a caching Policy on the RandomColor API call
   - Set a caching duraction of 15 seconds
   - Simple caching configuration is not yet implemented in the Azure Management portal - we see shall see later how it can be done using policy expressions
 
 ![](Images/APIMEnableCaching.png)
+
+![](Images/APIMEnableCaching2.png)
+
+![](Images/APIMEnableCaching3.png)
 
 - Configure Color Website to use Unlimited URL
 - Select [Start]
@@ -356,16 +434,13 @@ API Management can be configured for response caching - this can significantly r
 
 #### Analytics
 
-Analytics is currently only avaialable from the original Publisher portal.
+Analytics is available in the Azure management portal from the Analyics blade.
 
-- Look at dashboard and detailed :  Usage | Health | Activity
+- Look at dashboard and detailed :  Timeline | Geography | APIs | Operations | Products | Subscriptions | Users | Requests
 
 ![](Images/APIMAnalytics.png)
 
-- Information on advanced Power BI reporting :
-  - <https://blogs.msdn.microsoft.com/apimanagement/2017/09/27/power-bi-solution-template/>
-
-![](Images/APIMAnalyticsBI.png)
+![](Images/APIMAnalytics2.png)
 
 ---
 [Home](apimanagement-0.md) | [Prev](apimanagement-2.md) | [Next](apimanagement-4.md)

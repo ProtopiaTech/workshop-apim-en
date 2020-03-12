@@ -1,6 +1,6 @@
 # API Management - Hands-on Lab Script - part 1
 
-Mark Harrison : 1 Nov 2017
+Mark Harrison : checked & updated 10 March 2020 - original 1 Nov 2017
 
 ![](Images/APIM.png)
 
@@ -14,7 +14,7 @@ Mark Harrison : 1 Nov 2017
 
 An instance can take sometime to provision - so have one created in advance of any demo.
 
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.ApiManagement)
+[![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.ApiManagement)
 
 ![](Images/APIMDeployBlade.png)
 
@@ -28,11 +28,11 @@ Use appropriate values and hit [Create] to provision the service.
 Once the service has been provisioned, there will be:
 
 - Publisher Administration - this is now located in the Azure Management Portal
-  - There is the older Publisher portal -  this will eventually be deprecated
-- Developer portal 
+  - ( the older Publisher portal has now been deprecated )
+- Developer portal
 - Gateway
 
-The links to the two standalone portals are at the top of the Overview blade.
+The link to the developer portal is at the top of the Overview blade.
 
 ![](Images/APIMOverviewBlade.png)
 
