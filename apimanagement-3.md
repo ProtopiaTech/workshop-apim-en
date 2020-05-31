@@ -241,12 +241,12 @@ An API represents a set of operations that can be invoked. New APIs are defined 
 
 #### Add API from scratch
 
-This will use the Start Wars API <https://swapi.co>
+This will use the Start Wars API <https://swapi.dev>
 
 - Select [Add Blank API]
   - Select the [Full] option at the top of the dialog
   - Enter Display name, name and description
-  - Enter back end Web Service - this is <https://swapi.co/api>
+  - Enter back end Web Service - this is <https://swapi.dev/api>
   - Set API URL suffice to sw
   - Assign Products - Starter and Unlimited
   - Create
