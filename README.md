@@ -1,7 +1,9 @@
 # API Management - Hands-on Lab Script
-![](Images/APIM.png)
 
-[Based on the original APIM Lab by Mark Harrison.](https://github.com/markharrison/Lab_APIM) . Last Updated: 10th of July 2020. 
+<img style="float: left;" src="Images/APIM.png">
+
+
+[Based on the original APIM Lab by Mark Harrison.](https://github.com/markharrison/Lab_APIM) . 
 
 Authors
 - [Mark Harrison markharrison](http://github.com/markharrison)
@@ -20,4 +22,6 @@ Index
 - [Part 7 - Security](apimanagement-7.md)
 - [Part 8 - DevOps](apimanagement-8.md)
 
+
+Last Updated: 10th of July 2020. 
 ---
