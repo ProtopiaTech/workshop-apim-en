@@ -1,4 +1,4 @@
-# API Management - Hands-on Lab Script
+# Azure API Management - Hands-on Lab Workshop
 
 <img style="float: left;" src="Images/APIM.png">
 
