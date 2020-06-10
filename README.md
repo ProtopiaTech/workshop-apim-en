@@ -2,10 +2,10 @@
 [Based on the original APIM Lab by Mark Harrison.](https://github.com/markharrison/Lab_APIM) 
 
 Authors
-[Mark Harrison markharrison](http://github.com/markharrison)
-[David Barkol dbarkol](https://github.com/dbarkol)
-[Osvaldo Dailbert odaibert](https://github.com/odaibert)
-[Fernando Mejía feranto](https://github.com/feranto)
+- [Mark Harrison markharrison](http://github.com/markharrison)
+- [David Barkol dbarkol](https://github.com/dbarkol)
+- [Osvaldo Dailbert odaibert](https://github.com/odaibert)
+- [Fernando Mejía feranto](https://github.com/feranto)
 
 Last Updated: 10th of July 2020
 
