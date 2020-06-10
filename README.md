@@ -1,5 +1,7 @@
 # API Management - Hands-on Lab Script
-[Based on the original APIM Lab by Mark Harrison.](https://github.com/markharrison/Lab_APIM) 
+![](Images/APIM.png)
+
+[Based on the original APIM Lab by Mark Harrison.](https://github.com/markharrison/Lab_APIM) . Last Updated: 10th of July 2020. 
 
 Authors
 - [Mark Harrison markharrison](http://github.com/markharrison)
@@ -7,10 +9,8 @@ Authors
 - [Osvaldo Dailbert odaibert](https://github.com/odaibert)
 - [Fernando Mejía feranto](https://github.com/feranto)
 
-Last Updated: 10th of July 2020
 
-![](Images/APIM.png)
-
+Index
 - [Part 1 - Create an API Management instance](apimanagement-1.md)
 - [Part 2 - Developer Portal and Product Management](apimanagement-2.md)
 - [Part 3 - Adding API's](apimanagement-3.md)

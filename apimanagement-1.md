@@ -1,8 +1,6 @@
 # API Management - Hands-on Lab Script - part 1
 
-![](Images/APIM.png)
-
-- [Part 1 - Create an API Management instance](apimanagement-1.md) ... this document
+- Part 1 - Create an API Management instance ... this document
 - [Part 2 - Developer Portal and Product Management](apimanagement-2.md)
 - [Part 3 - Adding API's](apimanagement-3.md)
 - [Part 4 - Caching and Policy Expressions](apimanagement-4.md)
