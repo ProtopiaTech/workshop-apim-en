@@ -1,6 +1,7 @@
 # Azure API Management - Hands-on Lab Workshop
 
 <img style="float: left;" src="Images/APIM.png">
+
 Authors
 - [Mark Harrison markharrison](http://github.com/markharrison)
 - [David Barkol dbarkol](https://github.com/dbarkol)
