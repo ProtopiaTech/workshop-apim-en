@@ -1,6 +1,6 @@
 # API Management - Hands-on Lab Script - part 5
 
-![API Management](../../Images/APIM.png)
+![API Management](../Images/APIM.png)
 
 - [Part 1 - Create an API Management instance](apimanagement-1.md)
 - [Part 2 - Developer Portal](apimanagement-2.md)
@@ -26,9 +26,9 @@ With versions, you can group related APIs and associate them with a version numb
 - Select `Revisions`
 - Add a new revision called `rev2`
 
-![Revisions](../../Images/APIMRevisionsMenu.png)
-![Revisions](../../Images/APIMRevisionsAdd.png)
-![Revisions](../../Images/APIMRevisionsCreate.png)
+![Revisions](../Images/APIMRevisionsMenu.png)
+![Revisions](../Images/APIMRevisionsAdd.png)
+![Revisions](../Images/APIMRevisionsCreate.png)
 
 #### Add caching
 
@@ -40,7 +40,7 @@ With versions, you can group related APIs and associate them with a version numb
 - From the Azure portal, test the `GetPeople` operation
 - Note the revision number at the top of the page as well as in the request URL.
 
-![Revisions](../../Images/APIMRevisionsTest.png)
+![Revisions](../Images/APIMRevisionsTest.png)
 
 The request URL should look similar to: `https://<your-apim-name>.azure-api.net/sw;rev=2/people/`.
 
@@ -49,7 +49,7 @@ The request URL should look similar to: `https://<your-apim-name>.azure-api.net/
 - Select the Revisions tab
 - Make `rev2` the current revision
 
-![Revisions](../../Images/APIMRevisionsMakeCurrent.png)
+![Revisions](../Images/APIMRevisionsMakeCurrent.png)
 
 ### Version
 
@@ -61,8 +61,8 @@ The request URL should look similar to: `https://<your-apim-name>.azure-api.net/
   - Select the `Path` versioning scheme
   - Add the `Starter` and `Unlimited` products
 
-![Revisions](../../Images/APIMVersionsAdd.png)
-![Revisions](../../Images/APIMVersionsCreate.png)
+![Revisions](../Images/APIMVersionsAdd.png)
+![Revisions](../Images/APIMVersionsCreate.png)
 
 #### Test the new version
 
@@ -71,4 +71,4 @@ The request URL should look similar to: `https://<your-apim-name>.azure-api.net/
 - Notice the request URL and the inclusion of `v2` in the path
 - Test the `GetPeople` operation
 
-![Revisions](../../Images/APIMVersionsDevPortal.png)
+![Revisions](../Images/APIMVersionsDevPortal.png)
