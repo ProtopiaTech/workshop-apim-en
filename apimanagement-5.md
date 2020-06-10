@@ -1,108 +1,74 @@
 # API Management - Hands-on Lab Script - part 5
 
-Mark Harrison : checked & updated 12 March 2020 - original 1 Nov 2017
-
-![](Images/APIM.png)
+![API Management](Images/APIM.png)
 
 - [Part 1 - Create an API Management instance](apimanagement-1.md)
 - [Part 2 - Developer Portal](apimanagement-2.md)
-- [Part 3 - Administration](apimanagement-3.md)
-- [Part 4 - Policy Expressions](apimanagement-4.md)
-- [Part 5 - API Proxy to other Azure services](apimanagement-5.md) ... this document
+- [Part 3 - APIs](apimanagement-3.md)
+- [Part 4 - Policies and Caching](apimanagement-4.md)
+- [Part 5 - Versions and Revisions](apimanagement-5.md) ... this document
 
-## API Proxy to other Azure services
+## Version and Revisions
 
-### Azure Functions
+Versions and revisions provide you with an elegant way to manage change and the lifecycle of your APIs.
 
-- Create a simple function that is Triggered by an HTTP Request
+[https://azure.microsoft.com/en-us/blog/versions-revisions/](https://azure.microsoft.com/en-us/blog/versions-revisions/)
 
-Example:
+Revisions allow you to safely make non-breaking changes to your API. Developers who consume the API can be given details about the changes. Revisions also allow you to roll-back changes.
 
-![](Images/APIMFunctionExample.png)
+With versions, you can group related APIs and associate them with a version number and scheme (path, query string or header). Versions are typically used when breaking changes are made to an API.
 
-```c#
-    string[] strColors = { "blue", "lightblue", "darkblue" };
-//  string[] strColors = { "green", "lightgreen", "darkgreen" };
+### Revisions
 
-    Random r = new Random();
-    int rInt = r.Next(strColors.Length);
+#### Add a new revision
 
-    return req.CreateResponse(HttpStatusCode.OK, strColors[rInt]);
-```
+- Select the Star Wars API
+- Select `Revisions`
+- Add a new revision called `rev2`
 
-Lets add the function to API Managament.   In the API blade select [+Add API] and the [Function App] tile
+![Revisions](Images/APIMRevisionsMenu.png)
+![Revisions](Images/APIMRevisionsAdd.png)
+![Revisions](Images/APIMRevisionsCreate.png)
 
-![](Images/APIMFunctionAddAPI.png)
+#### Add caching
 
-- Select the [Browse] button to get a list of Functions in the subscription
+- Select the `GetPeople` operation
+- Add a caching policy for 10 seconds at the operation level
 
-![](Images/APIMFunctionAddBrowse.png)
+#### Test the new revision
 
-- Select the function
+- From the Azure portal, test the `GetPeople` operation
+- Note the revision number at the top of the page as well as in the request URL.
 
-![](Images/APIFunctionSelect.png)
+![Revisions](Images/APIMRevisionsTest.png)
 
-- Amend the Names / Descriptions, URL suffix and select the Products
+The request URL should look similar to: `https://<your-apim-name>.azure-api.net/sw;rev=2/people/`.
 
-![](Images/APIMFunctionCreate.png)
+#### Make current revision
 
-- As previously add CORS policy
+- Select the Revisions tab
+- Make `rev2` the current revision
 
-- Validate the function works - either from the Azure management portal or the developer portal
+![Revisions](Images/APIMRevisionsMakeCurrent.png)
 
-![](Images/APIMFunctionTest1.png)
+### Version
 
-![](Images/APIMFunctionTest2.png)
+#### Add a new version
 
-### Azure Logic Apps
+- Select the Star Wars API
+- Add a new version
+  - Set the name and identifier to `v2`
+  - Select the `Path` versioning scheme
+  - Add the `Starter` and `Unlimited` products
 
-- Create a simple logic app that is Triggered by an HTTP Request
+![Revisions](Images/APIMVersionsAdd.png)
+![Revisions](Images/APIMVersionsCreate.png)
 
-Example:
+#### Test the new version
 
-![](Images/APIMLogicAppExample1.png)
+- Browse to the developer portal
+- Select APIs and choose the `v2` version of the Star Wars API
+- Notice the request URL and the inclusion of `v2` in the path
+- Test the `GetPeople` operation
 
-![](Images/APIMLogicAppExample2.png)
-
-Use the following sample message to generate the schema of the Request body payload.  By specifying the schema, the individual fields (in this case `msg`) can be extracted and referred to in the subsequent logic
-
-```json
-{
-  "msg": "text"
-}
-```
-
-Lets add the function to API Managament. In the API blade select [+Add API] and the [Logic App] tile
-
-![](Images/APIMLogicAppAddAPI.png)
-
-- Select the [Browse] button to get a list of Logic Apps in the subscription
-
-![](Images/APIMLogicAppAddBrowse.png)
-
-- Select the Logic App
-
-![](Images/APILogicAppSelect%20.png)
-
-- Amend the Names / Descriptions, URL suffix  and select the Products
-
-![](Images/APIMLogicAppCreate.png)
-
- As previously add CORS policy
-
-- Validate the Logic App works - either from the Azure management portal or the developer poral
-
-![](Images/APIMLogicAppTest1.png)
-
-![](Images/APIMLogicAppTest2.png)
-
-- Check the Logic App audit
-
-![](Images/APIMLogicAppTest3.png)
-
-- Check the email was sent
-
-![](Images/APIMLogicAppTest4.png)
-
----
-[Home](apimanagement-0.md) | [Prev](apimanagement-4.md)
+![Revisions](Images/APIMVersionsDevPortal.png)

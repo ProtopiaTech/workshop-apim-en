@@ -10,7 +10,7 @@ JSON Web Tokens are an open, industry standard method for representing claims se
   - <https://www.unixtimestamp.com/index.php>
     - i.e. 01/01/2020  = 1577836800
 
-![](../Images/APIMJWT.png)
+![](Images/APIMJWT.png)
 
 - Open the Calculator API 'Code View'
 - Add the inbound policy to validate that JWT is valid
@@ -34,14 +34,14 @@ JSON Web Tokens are an open, industry standard method for representing claims se
 
 No JWT:
 
-![](../Images/APIMRequestJWTnone.png)
+![](Images/APIMRequestJWTnone.png)
 
 Valid JWT in header:
 
 Note the bearer token in the Request payload.
 Make sure your JWT token has an expiry date in the future.
 
-![](../Images/APIMRequestJWTvalid.png)
+![](Images/APIMRequestJWTvalid.png)
 
 #### JSON Web Tokens (JWT) - check a claim exists
 
@@ -68,7 +68,7 @@ Make sure your JWT token has an expiry date in the future.
 
 Checking for admin claim:
 
-![](../Images/APIMRequestJWTclaimvalid.png)
+![](Images/APIMRequestJWTclaimvalid.png)
 
 Checking for adminx claim:
 
@@ -76,7 +76,7 @@ Checking for adminx claim:
                 <claim name="adminx" match="any">
 ```
 
-![](../Images/APIMRequestJWTclaiminvalid.png)
+![](Images/APIMRequestJWTclaiminvalid.png)
 
 #### JSON Web Tokens (JWT) - extract claim and pass to backend
 
@@ -100,6 +100,6 @@ Checking for adminx claim:
 </set-header>
 ```
 
-![](../Images/APIMHeaderJWTClaimBackend.png)
+![](Images/APIMHeaderJWTClaimBackend.png)
 
-![](../Images/APIMTraceJWTClaimBackend.png)
+![](Images/APIMTraceJWTClaimBackend.png)
