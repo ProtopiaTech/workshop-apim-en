@@ -3,7 +3,7 @@
 <img style="float: left;" src="Images/APIM.png">
 
 
-[Based on the original APIM Lab by Mark Harrison.](https://github.com/markharrison/Lab_APIM) . 
+[Based on the original APIM Lab by Mark Harrison.](https://github.com/markharrison/Lab_APIM)
 
 Authors
 - [Mark Harrison markharrison](http://github.com/markharrison)
