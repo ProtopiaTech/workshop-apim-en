@@ -2,7 +2,7 @@
 
 Mark Harrison : checked & updated 12 March 2020 - original 1 Nov 2017
 
-![](Images/APIM.png)
+![](../Images/APIM.png)
 
 - [Part 1 - Create an API Management instance](apimanagement-1.md)
 - [Part 2 - Developer Portal](apimanagement-2.md)

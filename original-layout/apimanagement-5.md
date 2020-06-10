@@ -2,7 +2,7 @@
 
 Mark Harrison : checked & updated 12 March 2020 - original 1 Nov 2017
 
-![](Images/APIM.png)
+![](../Images/APIM.png)
 
 - [Part 1 - Create an API Management instance](apimanagement-1.md)
 - [Part 2 - Developer Portal](apimanagement-2.md)
@@ -18,7 +18,7 @@ Mark Harrison : checked & updated 12 March 2020 - original 1 Nov 2017
 
 Example:
 
-![](Images/APIMFunctionExample.png)
+![](../Images/APIMFunctionExample.png)
 
 ```c#
     string[] strColors = { "blue", "lightblue", "darkblue" };
@@ -32,27 +32,27 @@ Example:
 
 Lets add the function to API Managament.   In the API blade select [+Add API] and the [Function App] tile
 
-![](Images/APIMFunctionAddAPI.png)
+![](../Images/APIMFunctionAddAPI.png)
 
 - Select the [Browse] button to get a list of Functions in the subscription
 
-![](Images/APIMFunctionAddBrowse.png)
+![](../Images/APIMFunctionAddBrowse.png)
 
 - Select the function
 
-![](Images/APIFunctionSelect.png)
+![](../Images/APIFunctionSelect.png)
 
 - Amend the Names / Descriptions, URL suffix and select the Products
 
-![](Images/APIMFunctionCreate.png)
+![](../Images/APIMFunctionCreate.png)
 
 - As previously add CORS policy
 
 - Validate the function works - either from the Azure management portal or the developer portal
 
-![](Images/APIMFunctionTest1.png)
+![](../Images/APIMFunctionTest1.png)
 
-![](Images/APIMFunctionTest2.png)
+![](../Images/APIMFunctionTest2.png)
 
 ### Azure Logic Apps
 
@@ -60,9 +60,9 @@ Lets add the function to API Managament.   In the API blade select [+Add API] an
 
 Example:
 
-![](Images/APIMLogicAppExample1.png)
+![](../Images/APIMLogicAppExample1.png)
 
-![](Images/APIMLogicAppExample2.png)
+![](../Images/APIMLogicAppExample2.png)
 
 Use the following sample message to generate the schema of the Request body payload.  By specifying the schema, the individual fields (in this case `msg`) can be extracted and referred to in the subsequent logic
 
@@ -74,35 +74,35 @@ Use the following sample message to generate the schema of the Request body payl
 
 Lets add the function to API Managament. In the API blade select [+Add API] and the [Logic App] tile
 
-![](Images/APIMLogicAppAddAPI.png)
+![](../Images/APIMLogicAppAddAPI.png)
 
 - Select the [Browse] button to get a list of Logic Apps in the subscription
 
-![](Images/APIMLogicAppAddBrowse.png)
+![](../Images/APIMLogicAppAddBrowse.png)
 
 - Select the Logic App
 
-![](Images/APILogicAppSelect%20.png)
+![](../Images/APILogicAppSelect%20.png)
 
 - Amend the Names / Descriptions, URL suffix  and select the Products
 
-![](Images/APIMLogicAppCreate.png)
+![](../Images/APIMLogicAppCreate.png)
 
  As previously add CORS policy
 
 - Validate the Logic App works - either from the Azure management portal or the developer poral
 
-![](Images/APIMLogicAppTest1.png)
+![](../Images/APIMLogicAppTest1.png)
 
-![](Images/APIMLogicAppTest2.png)
+![](../Images/APIMLogicAppTest2.png)
 
 - Check the Logic App audit
 
-![](Images/APIMLogicAppTest3.png)
+![](../Images/APIMLogicAppTest3.png)
 
 - Check the email was sent
 
-![](Images/APIMLogicAppTest4.png)
+![](../Images/APIMLogicAppTest4.png)
 
 ---
 [Home](apimanagement-0.md) | [Prev](apimanagement-4.md)

@@ -2,7 +2,7 @@
 
 Mark Harrison : checked & updated 12 March 2020 - original 1 Nov 2017
 
-![](Images/APIM.png)
+![](../Images/APIM.png)
 
 - [Part 1 - Create an API Management instance](apimanagement-1.md)
 - [Part 2 - Developer Portal](apimanagement-2.md) ... this document
@@ -17,7 +17,7 @@ Developer portal is located at: {apim-service-name}.developer.azure-api.net
 Accessing from link in the Overview blade of the Azure Management Portal, will display the developer portal in admin / edit mode
 Using the Operations Icon - select `Publish Website`.  It will then be available for users to access.
 
-![](Images/APIMDeveloperPortal.png)
+![](../Images/APIMDeveloperPortal.png)
 
 ### User Experience
 
@@ -28,36 +28,36 @@ Using the Operations Icon - select `Publish Website`.  It will then be available
   - Notice the difference between the Starter & Unlimited products
 - Check the APIs
 
-![](Images/APIMDevPortalProducts.png)
+![](../Images/APIMDevPortalProducts.png)
 
-![](Images/APIMDevPortalAPIs.png)
+![](../Images/APIMDevPortalAPIs.png)
 
 #### Register for an account
 
 - If logged in as Administrator - log out
 - Sign up for an account
 
-![](Images/APIMDevSignup.png)
+![](../Images/APIMDevSignup.png)
 
 - Check acceptance email and confirm to activate account
 
-![](Images/APIMDevSignupEmail.png)
+![](../Images/APIMDevSignupEmail.png)
 
 - Sign into account
 
-![](Images/APIMDevSignin.png)
+![](../Images/APIMDevSignin.png)
 
 - Select Unlimited Product - Subscribe to a "Unlimited" subscription
   - Check email - needs approval
 - Select Starter Product - Subscribe to a "Starter" subscription
   - Check email - accepted
 
-![](Images/APIMDevSubscribe.png)
+![](../Images/APIMDevSubscribe.png)
 
 - Check user profile - see products and keys
   - Note that the Unlimited subscription is not yet Active as this request has not yet been approved
 
-![](Images/APIMDevSubscribe2.png)
+![](../Images/APIMDevSubscribe2.png)
 
 #### Try an API
 
@@ -65,11 +65,11 @@ Using the Operations Icon - select `Publish Website`.  It will then be available
   - Notice the developer information
   - Test the Echo API ... there may be a CORS error - we will address that later.
 
-![](Images/APIMDevTryAPI.png)
+![](../Images/APIMDevTryAPI.png)
 
-![](Images/APIMDevTryAPI2.png)
+![](../Images/APIMDevTryAPI2.png)
 
-![](Images/APIMDevTryAPI3.png)
+![](../Images/APIMDevTryAPI3.png)
 
 ### Customising the Developer Portal
 
@@ -83,11 +83,11 @@ Before you make your portal available to the visitors, you should personalize th
 
 Video on customisation is at <https://www.youtube.com/watch?v=5mMtUSmfUlw>
 
-![](Images/APIMDevConfig.png)
+![](../Images/APIMDevConfig.png)
 
-![](Images/APIDevConfig2.png)
+![](../Images/APIDevConfig2.png)
 
-![](Images/APIMDevStyles.png)
+![](../Images/APIMDevStyles.png)
 
 #### Email Configuration
 
@@ -96,11 +96,11 @@ The templates for the email notifications are managed from the Azure Management 
 - Look at notifications
 - Look at email templates
 
-![](Images/APIMNotifications.png)
+![](../Images/APIMNotifications.png)
 
-![](Images/APIMNotificationTemplates.png)
+![](../Images/APIMNotificationTemplates.png)
 
-![](Images/APIMNotificationEdit.png)
+![](../Images/APIMNotificationEdit.png)
 
 ---
 [Home](apimanagement-0.md) | [Prev](apimanagement-1.md) | [Next](apimanagement-3.md)

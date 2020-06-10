@@ -2,7 +2,7 @@
 
 Mark Harrison : checked & updated 12 March 2020 - original 1 Nov 2017
 
-![](Images/APIM.png)
+![](../Images/APIM.png)
 
 - [Part 1 - Create an API Management instance](apimanagement-1.md)
 - [Part 2 - Developer Portal](apimanagement-2.md)
@@ -25,25 +25,25 @@ We had a brief look earlier at setting CORS policies and caching.  Lets dive in 
   - Just select the Pencil icon to edit
 - Also notice, the configuration can be scoped to the API or an individual Operation
 
-![](Images/APIMPolicyEditor.png)
+![](../Images/APIMPolicyEditor.png)
 
 - Edit the Frontend ...
   - If editing an Operation - this gives a choice of the 'Code View' editor or Forms-based editor
   - If editing an API - the only option is the 'Code View' editor
   - The 'Code View' editor allows amendments to the Swagger (OpenAPI) definition
 
-![](Images/APIMFrontendCodeEditor.png)
+![](../Images/APIMFrontendCodeEditor.png)
 
-![](Images/APIMFrontendFormEditor.png)
+![](../Images/APIMFrontendFormEditor.png)
 
 - Edit Inbound processing / Outbound processong / Backend
   - Have a choice of the 'Code View' editor or selecting an [Add Policy] Form
 
-![](Images/APIMInboundProcessing.png)
+![](../Images/APIMInboundProcessing.png)
 
-![](Images/APIMInboundCodeEditor.png)
+![](../Images/APIMInboundCodeEditor.png)
 
-![](Images/APIMInboundFormEditor.png)
+![](../Images/APIMInboundFormEditor.png)
 
 ### Examples
 
@@ -77,7 +77,7 @@ Frequent requirement is to transform content
 <xml-to-json kind="direct" apply="always" consider-accept-header="false" />
 ```
 
-![](Images/APIMResponseXMLtoJSON.png)
+![](../Images/APIMResponseXMLtoJSON.png)
 
 #### Named Values collection
 
@@ -86,7 +86,7 @@ Named Values (aka Properties) are a collection of key/value pairs that are globa
 - Set a property called `TimeNow`
   - e.g. `@(DateTime.Now.ToString())`
 
-![](Images/APIMNamedValues.png)
+![](../Images/APIMNamedValues.png)
 
 - Open the Calculator API 'Code View'
 - Add the inbound policy to add the header
@@ -101,14 +101,14 @@ Named Values (aka Properties) are a collection of key/value pairs that are globa
 </set-header>
 ```
 
-![](Images/APIMTraceNV.png)
+![](../Images/APIMTraceNV.png)
 
-![](Images/APIMTraceNV2.png)
+![](../Images/APIMTraceNV2.png)
 
 - Go to the URL specified in the HTTP Response - [ocp-apim-trace-location]
   - Note that the [timeheader] field has been sent to the backend API
 
-![](Images/APIMTraceNV3.png)
+![](../Images/APIMTraceNV3.png)
 
 #### Delete response headers
 
@@ -125,10 +125,10 @@ Frequent requirement is to remove headers - example those that might leak potent
 ```
 
 Before:
-![](Images/APIMResponseDeleteHeaders.png)
+![](../Images/APIMResponseDeleteHeaders.png)
 
 After policy applied:
-![](Images/APIMResponseDeleteHeaders2.png)
+![](../Images/APIMResponseDeleteHeaders2.png)
 
 #### Amend what's passed to the backend
 
@@ -153,7 +153,7 @@ More info <https://docs.microsoft.com/en-us/azure/api-management/api-management-
 
 Note - this trace below was from the Developer portal.  I got errors when testing from the Azure Management portal, as the [User Id] is unable to be evaluated.
 
-![](Images/APIMTraceAmendBackend.png)
+![](../Images/APIMTraceAmendBackend.png)
 
 #### Transformation - conditional
 
@@ -189,11 +189,11 @@ Not the inbound header is set to ensure that the Response Body is not encoded as
 
 With Starter key:
 
-![](Images/APIMResponseCondStarter.png)
+![](../Images/APIMResponseCondStarter.png)
 
 With Unlimited key:
 
-![](Images/APIMResponseCondUnlimited.png)
+![](../Images/APIMResponseCondUnlimited.png)
 
 #### JSON Web Tokens (JWT) - validate
 
@@ -205,7 +205,7 @@ JSON Web Tokens are an open, industry standard method for representing claims se
   - <https://www.unixtimestamp.com/index.php>
     - i.e. 01/01/2020  = 1577836800
 
-![](Images/APIMJWT.png)
+![](../Images/APIMJWT.png)
 
 - Open the Calculator API 'Code View'
 - Add the inbound policy to validate that JWT is valid
@@ -229,14 +229,14 @@ JSON Web Tokens are an open, industry standard method for representing claims se
 
 No JWT:
 
-![](Images/APIMRequestJWTnone.png)
+![](../Images/APIMRequestJWTnone.png)
 
 Valid JWT in header:
 
 Note the bearer token in the Request payload.
 Make sure your JWT token has an expiry date in the future.
 
-![](Images/APIMRequestJWTvalid.png)
+![](../Images/APIMRequestJWTvalid.png)
 
 #### JSON Web Tokens (JWT) - check a claim exists
 
@@ -263,7 +263,7 @@ Make sure your JWT token has an expiry date in the future.
 
 Checking for admin claim:
 
-![](Images/APIMRequestJWTclaimvalid.png)
+![](../Images/APIMRequestJWTclaimvalid.png)
 
 Checking for adminx claim:
 
@@ -271,7 +271,7 @@ Checking for adminx claim:
                 <claim name="adminx" match="any">
 ```
 
-![](Images/APIMRequestJWTclaiminvalid.png)
+![](../Images/APIMRequestJWTclaiminvalid.png)
 
 #### JSON Web Tokens (JWT) - extract claim and pass to backend
 
@@ -295,9 +295,9 @@ Checking for adminx claim:
 </set-header>
 ```
 
-![](Images/APIMHeaderJWTClaimBackend.png)
+![](../Images/APIMHeaderJWTClaimBackend.png)
 
-![](Images/APIMTraceJWTClaimBackend.png)
+![](../Images/APIMTraceJWTClaimBackend.png)
 
 #### Aborting the processing
 
@@ -321,7 +321,7 @@ Checking for adminx claim:
 </choose>
 ```
 
-![](Images/APIMResponseAbort.png)
+![](../Images/APIMResponseAbort.png)
 
 #### Send message to Microsoft Teams channel
 
@@ -334,13 +334,13 @@ For Microsoft Teams
 - First need to go into Teams and enable a Web hook connector.
   - Get the URL of the webhook.
 
-![](Images/APIMTeamsWebHook1.png)
+![](../Images/APIMTeamsWebHook1.png)
 
-![](Images/APIMTeamsWebHook2.png)
+![](../Images/APIMTeamsWebHook2.png)
 
-![](Images/APIMTeamsWebHook3.png)
+![](../Images/APIMTeamsWebHook3.png)
 
-![](Images/APIMTeamsWebHook4.png)
+![](../Images/APIMTeamsWebHook4.png)
 
 - Format the required payload ... the payload sent to a Teams channel is of the MessageCard JSON schema format
   - <https://docs.microsoft.com/en-us/microsoftteams/platform/task-modules-and-cards/cards/cards-reference>
@@ -388,7 +388,7 @@ For Microsoft Teams
 
 Received notification in the Teams channel:
 
-![](Images/APIMTeamsMessage.png)
+![](../Images/APIMTeamsMessage.png)
 
 #### Send to Azure Event Hub
 
@@ -437,11 +437,11 @@ Mocking provides a way to return sample responses even when the backend is not a
 - Create a new operation called GetFilm
 - In the Response configuration tab, set Sample data as below
 
-![](Images/APIMMockingFrontend.png)
+![](../Images/APIMMockingFrontend.png)
 
-![](Images/APIMMockingFrontend2.png)
+![](../Images/APIMMockingFrontend2.png)
 
-![](Images/APIMMockingFrontend3.png)
+![](../Images/APIMMockingFrontend3.png)
 
 ```json
 {
@@ -453,19 +453,19 @@ Mocking provides a way to return sample responses even when the backend is not a
 - Open the Inbound processing 'Code View'
 - Enable mocking and specify a 200 OK response status code
 
-![](Images/APIMMockingInbound.png)
+![](../Images/APIMMockingInbound.png)
 
 - Select the 200 OK response ... Save
 
-![](Images/APIMMockingInbound2.png)
+![](../Images/APIMMockingInbound2.png)
 
 - Mocking is now enabled
 
-![](Images/APIMMockingInbound3.png)
+![](../Images/APIMMockingInbound3.png)
 
 - Invoke the API ... should get a 200 success with the mocked data
 
-![](Images/APIMMockingResponse.png)
+![](../Images/APIMMockingResponse.png)
 
 ---
 [Home](apimanagement-0.md) | [Prev](apimanagement-3.md) | [Next](apimanagement-5.md)
