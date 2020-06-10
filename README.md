@@ -7,6 +7,8 @@ Authors
 [Osvaldo Dailbert odaibert](https://github.com/odaibert)
 [Fernando Mejía feranto](https://github.com/feranto)
 
+Last Updated: 10th of July 2020
+
 ![](Images/APIM.png)
 
 - [Part 1 - Create an API Management instance](apimanagement-1.md)
