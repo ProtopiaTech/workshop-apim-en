@@ -72,3 +72,6 @@ The request URL should look similar to: `https://<your-apim-name>.azure-api.net/
 - Test the `GetPeople` operation
 
 ![Revisions](Images/APIMVersionsDevPortal.png)
+
+---
+[Home](README.md) | [Prev](apimanagement-5.md) | [Next](apimanagement-6.md)

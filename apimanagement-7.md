@@ -103,3 +103,6 @@ Checking for adminx claim:
 ![](Images/APIMHeaderJWTClaimBackend.png)
 
 ![](Images/APIMTraceJWTClaimBackend.png)
+
+---
+[Home](README.md) | [Prev](apimanagement-6.md) | [Next](apimanagement-8.md)

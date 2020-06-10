@@ -37,4 +37,4 @@ The link to the developer portal is at the top of the Overview blade.
 ![](Images/APIMOverviewBlade.png)
 
 ---
-[Home](apimanagement-0.md) | [Next](apimanagement-2.md)
+[Home](README.md) | [Next](apimanagement-2.md)

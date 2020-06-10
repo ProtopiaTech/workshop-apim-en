@@ -375,5 +375,5 @@ Mocking provides a way to return sample responses even when the backend is not a
 ![](Images/APIMMockingResponse.png)
 
 ---
-[Home](apimanagement-0.md) | [Prev](apimanagement-3.md) | [Next](apimanagement-5.md)
+[Home](README.md) | [Prev](apimanagement-3.md) | [Next](apimanagement-5.md)
 

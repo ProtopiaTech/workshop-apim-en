@@ -11,3 +11,4 @@ Analytics is available in the Azure management portal from the Analyics blade.
 ![](Images/APIMAnalytics2.png)
 
 ---
+[Home](README.md) | [Prev](apimanagement-5.md) | [Next](apimanagement-7.md)

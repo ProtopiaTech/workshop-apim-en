@@ -186,3 +186,6 @@ Via the menu - there is a configution page to specify the API endpoint
   - Example: *{ "statusCode": 429, "message": "Rate limit is exceeded. Try again in 54 seconds." }*
 
 ![](Images/APIMColorWebStarter.png)
+
+---
+[Home](README.md) | [Prev](apimanagement-2.md) | [Next](apimanagement-4.md)

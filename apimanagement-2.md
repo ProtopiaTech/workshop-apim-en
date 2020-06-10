@@ -102,8 +102,6 @@ The templates for the email notifications are managed from the Azure Management 
 
 ![](Images/APIMNotificationEdit.png)
 
----
-[Home](apimanagement-0.md) | [Prev](apimanagement-1.md) | [Next](apimanagement-3.md)
 
 ### Product Management
 
@@ -129,3 +127,6 @@ A product contains one or more APIs as well as a usage quota and the terms of us
 - See the new Gold Tier product in the Developer portal
 
 ![](Images/APIMAddProductsDevPortal.png)
+
+---
+[Home](README.md) | [Prev](apimanagement-1.md) | [Next](apimanagement-3.md)
