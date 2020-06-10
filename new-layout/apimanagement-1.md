@@ -2,7 +2,7 @@
 
 Mark Harrison : checked & updated 12 March 2020 - original 1 Nov 2017
 
-![](../Images/APIM.png)
+![](../../Images/APIM.png)
 
 - [Part 1 - Create an API Management instance](apimanagement-1.md) ... this document
 - [Part 2 - Developer Portal](apimanagement-2.md)
@@ -16,14 +16,14 @@ An instance can take sometime to provision - so have one created in advance of a
 
 [![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.ApiManagement)
 
-![](../Images/APIMDeployBlade.png)
+![](../../Images/APIMDeployBlade.png)
 
 Use appropriate values and hit [Create] to provision the service.
 
 - Service name must be unique.
 - For demo purposes, use the Developer tier.
 
-![API Management](../Images/APIManagement.png)
+![API Management](../../Images/APIManagement.png)
 
 Once the service has been provisioned, there will be:
 
@@ -34,7 +34,7 @@ Once the service has been provisioned, there will be:
 
 The link to the developer portal is at the top of the Overview blade.
 
-![](../Images/APIMOverviewBlade.png)
+![](../../Images/APIMOverviewBlade.png)
 
 ---
 [Home](apimanagement-0.md) | [Next](apimanagement-2.md)
