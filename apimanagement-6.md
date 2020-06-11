@@ -50,7 +50,6 @@ Before you can use Azure Application Insights, you first need to create an insta
 6. You have just created an Azure Application Insights logger with an instrumentation key. It should now appear in the list.  
     ![App Insights logger](Images/apim-app-insights-logger-2.png)  
 
-> [!NOTE]
 > Behind the scene, a [Logger](https://docs.microsoft.com/rest/api/apimanagement/2019-12-01/logger/createorupdate) entity is created in your API Management instance, containing the Instrumentation Key of the Application Insights instance.
 
 ### Enable Application Insights logging for your API
@@ -66,10 +65,8 @@ Before you can use Azure Application Insights, you first need to create an insta
 8. Input **100** as **Sampling (%)** and tick the **Always log errors** checkbox.
 9. Click **Save**.
 
-> [!WARNING]
 > Overriding the default value **0** in the **First bytes of body** field may significantly decrease the performance of your APIs.
 
-> [!NOTE]
 > Behind the scene, a [Diagnostic](https://docs.microsoft.com/rest/api/apimanagement/2019-12-01/diagnostic/createorupdate) entity named 'applicationinsights' is created at the API level.
 
 | Setting name                        | Value type                        | Description                                                                                                                                                                                                                                                                                                                                      |
@@ -86,7 +83,6 @@ Before you can use Azure Application Insights, you first need to create an insta
 | Advanced Options: Backend Request   |                                   | Specifies whether and how *backend requests* will be logged to Azure Application Insights. *Backend request* is a request outgoing from the Azure API Management service.                                                                                                                                                                        |
 | Advanced Options: Backend Response  |                                   | Specifies whether and how *backend responses* will be logged to Azure Application Insights. *Backend response* is a response incoming to the Azure API Management service.                                                                                                                                                                       |
 
-> [!NOTE]
 > You can specify loggers on different levels - single API logger or a logger for all APIs.
 >  
 > If you specify both:
@@ -109,7 +105,6 @@ A failed request is a request, which:
 
 ### Performance implications and log sampling
 
-> [!WARNING]
 > Logging all events may have serious performance implications, depending on incoming requests rate.
 
 Based on internal load tests, enabling this feature caused a 40%-50% reduction in throughput when request rate exceeded 1,000 requests per second. Azure Application Insights is designed to use statistical analysis for assessing application performances. It is not intended to be an audit system and is not suited for logging each individual request for high-volume APIs.
