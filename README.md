@@ -23,6 +23,6 @@ Slides
 
 [Based on the original APIM Lab by Mark Harrison.](https://github.com/markharrison/Lab_APIM)
 
-Last Updated: 11th of June 2020.
+Last Updated: 06/15/2020
 
 ---
