@@ -1,3 +1,6 @@
+THIS PART IS UNDER CONSTRUCTION. LAST UPDATE 06/15/2020.
+
+
 # API Management - Hands-on Lab Script - part 9
 
 - [Part 1 - Create an API Management instance](apimanagement-1.md) 
@@ -11,41 +14,97 @@
 
 Please see [aka.ms/apimdevops](http://aka.ms/apimdevops) for (work in progress) guidance and tools around automating deployment across multiple API Management environments.
 
-## CI/CD with API Management
+# Continuos Integration and Continuos Deployment using Azure DevOps - AzDO
 
-The proposed approach is illustrated in the below picture. You can also [watch this video](https://www.youtube.com/watch?v=4Sp2Qvmg6j8) which explains the approach as well as demonstrates a sample implementation. 
+The following instructions demonstrate how to deploy the contents of this example repository using Azure DevOps Repos and Azure DevOps Pipelines.
 
-![alt](Images/APIM-DevOps.png)
+## Pre-reqs
 
-In this example, there are two deployment environments: Development and Production, each has its own API Management instance. API developers have access to the Development instance and can use it for developing and testing their APIs. The Production instance is managed by a designated team called the API publishers.
+To run this solution you will need:
 
-The key in this proposed approach is to keep all API Management configurations in Azure [Resource Manager templates](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates). These templates should be kept in a source control system. We will use GIT throughout this example. As illustrated in the picture, there is a Publisher repository that contains all configurations of the Production API Management instance in a collection of templates.
+- Azure DevOps Account
+- An Azure DevOps Repo configured (how to configura an Azure DevOps Repo)
+- For this solution, we will use 3 API Management deployed (Dev, QA and Production) 
+- Some API(s) on your API Management 
 
-* **Service template**: contains all the service-level configurations of the API Management instance (e.g., pricing tier and custom domains). 
-* **Shared templates**: contain shared resources throughout an API Management instance (e.g., groups, products, loggers). 
-* **API templates**: include configurations of APIs and their sub-resources (e.g., operations, policies, diagnostics settings). 
-* **Master template**: ties everything together by [linking](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-linked-templates) to all templates and deploy them in order. If we want to deploy all configurations to an API Management instance, we can just deploy the master template. Meanwhile, each template can also be deployed individually.
+## Architecture
 
-API developers will fork the publisher repository to a developer repository and work on the changes for their APIs. In most cases, they will focus on the API templates for their APIs and do not need to change the shared or service templates.
+We'll follow the same scenario presented on [README.md] file. 
 
-We realize there are two challenges for API developers when working with Resource Manager templates:
+![alt](.//images/architecture.png){:height="50%" width="50%"}
 
-* First, API developers often work with [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) and may not be familiar with Resource Manager schemas. Authoring templates manually might be an error-prone task. Therefore, we created a utility tool called [**Creator**](https://github.com/Azure/azure-api-management-devops-resource-kit/blob/master/src/APIM_ARMTemplate/README.md#Creator) to automate the creation of API templates based on an Open API Specification file. Optionally, developers can supply API Management policies for an API in XML format. Basically, the tool inserts the Open API specification and policies into a Resource Manager template in the proper format. With this tool, API developers can continue focusing on the formats and artifacts they are familiar with.
+## The proccess
 
-* Second, for customers who have already been using API Management, another challenge is how to extract existing configurations into Resource Manager templates. For those customers, We have created another tool called [**Extractor**]([./src/APIM_ARMTemplate/README.md#extractor](https://github.com/Azure/azure-api-management-devops-resource-kit/blob/master/src/APIM_ARMTemplate/README.md#extractor)) to help them generate templates by extracting configurations from their exisitng API Management instances.  
+This is one example how to use Azure DevOps Repo and Azure DevOps Pipelines to enable a Continuos Integration and Continuos Deploiment (CI/CD) for API's on a Azure API Management Service. There's other ways to do this, but this is a "Keep it Simple" to help you start. (Planning to have another version using Github and Github Actions soon).
 
-Once API developers have finished developing and testing an API, and have generated the API template, they can submit a pull request to merge the changes to the publisher repository. API publishers can validate the pull request and make sure the changes are safe and compliant. For example, they can check if only HTTPS is allowed to communicate with the API. Most of these validations can be automated as a step in the CI/CD pipeline. Once the changes are approved and merged successfully, API publishers can choose to deploy them to the Production instance either on schedule or on demand. The deployment of the templates can be automated using [Github Actions](https://github.com/Azure/apimanagement-devops-samples), [Azure Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops), [PowerShell](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-deploy), [Azure CLI](Azure-cli-example.md) or other tools.
+This is our Development API management. In general, developers will create their API's on one instance of APIM to test it. 
 
-With this approach, the deployment of API changes into API Management instances can be automated and it is easy to promote changes from one environment to another. Since different API development teams will be working on different sets of API templates and files, it prevents interference between different teams.
+![alt](./images/apim-dev-apis.png){:height="50%" width="50%"}
 
-We realize our customers bring a wide range of engineering cultures and existing automation solutions. The approach and tools provided here are not meant to be a one-size-fits-all solution. That's why we created this repository and open-sourced everything, so that you can extend and customize the solution.
+Once a Developer create and test the API on API Management, it's time to extract these API's using this DevOps Resource Kit. 
+
+To runn it:
+
+<a name="extractor1"></a>
+
+## Running the Extractor
+Below are the steps to run the Extractor from the source code:
+- Clone this repository and navigate to {path_to_folder}/src/APIM_ARMTemplate/apimtemplate 
+- Restore its packages using ```dotnet restore```
+- Make sure you have signed in using Azure CLI and have switched to the subscription containing the API Management instance from which the configurations will be extracted. 
+```
+az login
+az account set --subscription <subscription_id>
+```
+#### Extractor Arguments
+
+You have two choices when specifying your settings:
+1. By using a json file with key-values where the keys matches the table below. Use the `extractorConfig` argument:
+`extract --extractorConfig c:/temp/extractSettings.json`. [See more examples.](#extractorParameterFileExamples)
+2. Pass the arguments on the command line. For instance `extract --sourceApimName my-feature-apim --destinationApimName company-stable-apim --resourceGroup my-feature-rg --fileFolder c:\temp\apim-extract --apiName MyFeatureV1Api`.
+
+For this example we will only use the option #2
+
+So, run the aplication with: 
+```
+dotnet run extract --sourceApimName <DEV-APIM-NAME> --destinationApimName <DESTINATION-APIM-NAME> --resourceGroup <RESOURCE-GROUP-NAME>  --fileFolder c:\temp\apim-extract.
+```
+Where: 
+
+> **DEV-APIM-NAME:** API Management where you created your API
+> **DESTINATION-APIM-NAME:** It's just a convention to set the DESTINATION-API-NAME in front of the generated files.
+> **RESOURCE-GROUP-NAME:** Resource group where the DEV-APIM-NAME is hosted.
+
+After execute the command above, you will see something similar to this:
+
+![alt](./images/extractedapis.png){:height="50%" width="50%"}
+
+Then you see the json files extracted: 
+
+![alt](./images/extractedfiles.png){:height="50%" width="50%"}
+
+Now, push your to your Azure DevOps Repo 
+
+```
+git push 
+```
+
+Now lets create our Build Pipeline: 
+
+Add these tasks to your build: 
+- Get Sources
+- Copy Publish Artifacts 
+  
+![alt](./images/buildpipelinetasks.png){:height="50%" width="50%"}
+
+Configure the fields as show bellow:
+
+![alt](./images/copypublishartifact.png){:height="50%" width="50%"}
+
+Now you have a Build Pipeline which will pull your APIM JSON files and publish it to the Artifact folder on your Azure DevOps. 
+
+![alt](./images/releasepipeline.png){:height="50%" width="50%"}
 
 
-## Alternatives
 
-* For customers who are just starting out or have simple scenarios, they may not necessarily need to use the tools we provided and may find it easier to begin with the boilerplate templates we provided in the [example]([./example/](https://github.com/Azure/azure-api-management-devops-resource-kit/tree/master/example)) folder.
-* Customers can also run [PowerShell](https://docs.microsoft.com/powershell/module/azurerm.apimanagement/?view=azurermps-6.13.0) scripts as part of their release process to deploy APIs to API Management.
-* There is also a **non-official** Azure DevOps [extension](https://marketplace.visualstudio.com/items?itemName=stephane-eyskens.apim) created by [Stephane Eyskens](https://stephaneeyskens.wordpress.com/)
-
----
 [Home](README.md) | [Prev](apimanagement-7.md) 
