@@ -5,6 +5,7 @@
 This hands-on-lab will guide you through the different concepts around Azure API Management, from the creation, to the DevOps, including good practices in terms of versioning, security and so on.
 
 Index
+
 - [Part 1 - Create an API Management instance](apimanagement-1.md)
 - [Part 2 - Developer Portal and Product Management](apimanagement-2.md)
 - [Part 3 - Adding API's](apimanagement-3.md)
@@ -14,18 +15,25 @@ Index
 - [Part 7 - Security](apimanagement-7.md)
 - [Part 8 - DevOps](apimanagement-8.md)
 
+Additional Topics
+
+- [Provision your own instance of ColorWeb/ColorAPI](apimanagement-A.md)
+- [API Proxy to Serverless](apimanagement-B.md)
+
 Slides
+
 - [Azure API Management Slides](/slides/APIM.pptx)
 
 Authors
+
 - [Mark Harrison](http://github.com/markharrison)
 - [David Barkol](https://github.com/dbarkol)
 - [Osvaldo Dailbert](https://github.com/odaibert)
 - [Fernando Mejía](https://github.com/feranto)
 - [Louis-Guillaume MORAND](https://github.com/lgmorand)
 
-[Based on the original APIM Lab by Mark Harrison.](https://github.com/markharrison/Lab_APIM)
+[Based on the original APIM Lab by Mark Harrison.](https://github.com/markharrison/Lab_APIM_Original)
 
-Last Updated: 07/15/2020
+Last Updated: 17/Aug/2020
 
 ---
