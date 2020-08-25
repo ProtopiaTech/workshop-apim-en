@@ -19,6 +19,7 @@ Additional Topics
 
 - [Provision your own instance of ColorWeb/ColorAPI](apimanagement-A.md)
 - [API Proxy to Serverless](apimanagement-B.md)
+- [Self-hosted Gateway](apimanagement-C.md)
 
 Slides
 
@@ -34,6 +35,6 @@ Authors
 
 [Based on the original APIM Lab by Mark Harrison.](https://github.com/markharrison/Lab_APIM_Original)
 
-Last Updated: 17/Aug/2020
+Last Updated: 24/Aug/2020
 
 ---
