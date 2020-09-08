@@ -20,6 +20,7 @@ Additional Topics
 - [Provision your own instance of ColorWeb/ColorAPI](apimanagement-A.md)
 - [API Proxy to Serverless](apimanagement-B.md)
 - [Self-hosted Gateway](apimanagement-C.md)
+- [AAD - Integration, Work In progress](apimanagement-D.md) 
 
 Slides
 
