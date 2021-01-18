@@ -29,7 +29,7 @@ With the container we can deploy to multiple hosting options : VM's, App Service
 1. Login to Azure Portal at http://portal.azure.com.
 2. Open the Azure Cloud Shell and choose Bash Shell (do not choose Powershell)
 
-   ![Azure Cloud Shell](images/img-cloud-shell.png "Azure Cloud Shell")
+   ![Azure Cloud Shell](Images/img-cloud-shell.png "Azure Cloud Shell")
 
 3. The first time Cloud Shell is started will require you to create a storage account. 
 4. We proceed to create a unique identifier suffix for resources created in this Lab:
@@ -91,9 +91,9 @@ aci-color-web-fernando22287.eastus.azurecontainer.io  Succeeded
 
 Once we have a "Succeeded" message we proceed to navigate to the FQDN. And we should see our home page for our Colors Web:
 
-![](Images/APIMColorWebUnlimited.png)
+![](Images/APIMColorWeb.png)
 
-8.  Now we proceed to create the ACI for the colors-api github container:
+1.  Now we proceed to create the ACI for the colors-api github container:
 ```
 #we define some variables first
 APIMLAB_COLORS_API=mycolorsapi-$APIMLAB_UNIQUE_SUFFIX
