@@ -79,22 +79,22 @@ With the container we can deploy to multiple hosting options : VM's, App Service
 
 7.   Now we run the following command to check the status of the deployment and get the FQDN to access the app:
 
-    ```bash
-    #we check the status
-    az container show --resource-group $APIMLAB_RGNAME --name $APIMLAB_COLORS_WEB --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" --out table
-    ```
+      ```bash
+      #we check the status
+      az container show --resource-group $APIMLAB_RGNAME --name $APIMLAB_COLORS_WEB --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" --out table
+      ```
 
-    The output should something like this:
+      The output should something like this:
 
-    ```
-    FQDN                                                  ProvisioningState
-    ----------------------------------------------------  -------------------
-    aci-color-web-fernando22287.eastus.azurecontainer.io  Succeeded
-    ```
+      ```
+      FQDN                                                  ProvisioningState
+      ----------------------------------------------------  -------------------
+      aci-color-web-fernando22287.eastus.azurecontainer.io  Succeeded
+      ```
 
-    Once we have a "Succeeded" message we proceed to navigate to the FQDN. And we should see our home page for our Colors Web:
+      Once we have a "Succeeded" message we proceed to navigate to the FQDN. And we should see our home page for our Colors Web:
 
-    ![](Images/APIMColorWebUnlimited.png)
+      ![](Images/APIMColorWebUnlimited.png)
 
 8.  Now we proceed to create the ACI for the colors-api github container:
 
