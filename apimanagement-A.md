@@ -29,7 +29,7 @@ With the container we can deploy to multiple hosting options : VM's, App Service
 1. Login to Azure Portal at http://portal.azure.com.
 2. Open the Azure Cloud Shell and choose Bash Shell (do not choose Powershell)
 
-   ![Azure Cloud Shell](Images/img-cloud-shell.png "Azure Cloud Shell")
+   ![Azure Cloud Shell](images/img-cloud-shell.png "Azure Cloud Shell")
 
 3. The first time Cloud Shell is started will require you to create a storage account. 
 4. We proceed to create a unique identifier suffix for resources created in this Lab:
@@ -65,15 +65,15 @@ az group create --name $APIMLAB_RGNAME --location $APIMLAB_LOCATION
 #we define some variables first
 APIMLAB_COLORS_WEB=mycolorsweb-$APIMLAB_UNIQUE_SUFFIX
 APIMLAB_IMAGE_WEB=ghcr.io/markharrison/coloursweb:latest
-APIMLAB_DNSLABEL_WEB=aci-color-web-$APIMLAB_UNIQUE_SUFFIX
+APIMLAB_DNSLABEL_WEB=acicolorweb$APIMLAB_UNIQUE_SUFFIX
 # Persist for Later Sessions in Case of Timeout
 echo export APIMLAB_COLORS_WEB=$APIMLAB_COLORS_WEB >> ~/.bashrc
 echo export APIMLAB_IMAGE_WEB=$APIMLAB_IMAGE_WEB >> ~/.bashrc
 echo export APIMLAB_DNSLABEL_WEB=$APIMLAB_DNSLABEL_WEB >> ~/.bashrc
 
 
-#we create the resource group
-az container create --resource-group $APIMLAB_RGNAME --name $APIMLAB_COLORS_WEB --image $APIMLAB_IMAGE_WEB --dns-name-label $APIMLAB_DNSLABEL_WEB --ports 80 --no-wait
+#we create the container instance for the colors web
+az container create --resource-group $APIMLAB_RGNAME --name $APIMLAB_COLORS_WEB --image $APIMLAB_IMAGE_WEB --dns-name-label $APIMLAB_DNSLABEL_WEB --ports 80 --restart-policy OnFailure --no-wait
 ```
 7.   Now we run the following command to check the status of the deployment and get the FQDN to access the app:
 ```
@@ -91,9 +91,9 @@ aci-color-web-fernando22287.eastus.azurecontainer.io  Succeeded
 
 Once we have a "Succeeded" message we proceed to navigate to the FQDN. And we should see our home page for our Colors Web:
 
-![](Images/APIMColorWeb.png)
+![](Images/APIMColorWebUnlimited.png)
 
-1.  Now we proceed to create the ACI for the colors-api github container:
+8.  Now we proceed to create the ACI for the colors-api github container:
 ```
 #we define some variables first
 APIMLAB_COLORS_API=mycolorsapi-$APIMLAB_UNIQUE_SUFFIX
@@ -105,8 +105,8 @@ echo export APIMLAB_IMAGE_WEB=$APIMLAB_IMAGE_WEB >> ~/.bashrc
 echo export APIMLAB_DNSLABEL_WEB=$APIMLAB_DNSLABEL_WEB >> ~/.bashrc
 
 
-#we create the resource group
-az container create --resource-group $APIMLAB_RGNAME --name $APIMLAB_COLORS_API --image $APIMLAB_IMAGE_API --dns-name-label $APIMLAB_DNSLABEL_API --ports 80 --no-wait
+#we create the container instance for the colors api
+az container create --resource-group $APIMLAB_RGNAME --name $APIMLAB_COLORS_API --image $APIMLAB_IMAGE_API --dns-name-label $APIMLAB_DNSLABEL_API --ports 80 --restart-policy OnFailure --no-wait
 ```
 
 9.  Now we run the following command to check the status of the deployment and get the FQDN to access the app:
