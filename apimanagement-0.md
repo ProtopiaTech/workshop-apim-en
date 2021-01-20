@@ -103,7 +103,7 @@ With the container we can deploy to multiple hosting options : VM's, App Service
 
       Once we have a "Succeeded" message we proceed to navigate to the FQDN. And we should see our home page for our Colors Web:
 
-      ![](Images/APIMColorWebUnlimited.png)
+      ![](Images/APIMACICOLORWEB.png)
 
 8.  Now we proceed to create the ACI for the colors-api github container:
 
