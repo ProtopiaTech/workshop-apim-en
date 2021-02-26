@@ -173,6 +173,27 @@ Note - this trace below was from the Developer portal.  I got errors when testin
 
 ![](Images/APIMTraceAmendBackend.png)
 
+#### Transformation - replace string
+
+The find-and-replace policy finds a request or response substring and replaces it with a different substring.
+
+- Open the Colors API | ApiRandomColor operation 'Code View'
+- Add the outbound policy to change from "blue" to "yellow"
+- Invoke the API using the Starter product key and examine the response
+- Invoke the API using the Unlimited product key and examine the response
+
+
+```xml
+<find-and-replace from="blue" to="yellow" />
+
+```
+
+With Starter key and Unlimited key:
+
+![](Images/replacepolicy.png)
+
+
+
 #### Transformation - conditional
 
 Another C# example to manipulate the response body, depending on the product - with this expression a subscriber of the Starter product will only get back a subset of the information.  Other products will get the full information.
