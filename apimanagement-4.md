@@ -115,7 +115,7 @@ Named Values (aka Properties) are a collection of key/value pairs that are globa
 ```xml
 <!-- Inbound -->
 <set-header name="timeheader" exists-action="override">
-    <value>{{TimeNow}}</value>
+    <value>{{"{{TimeNow"}}}}</value>
 </set-header>
 ```
 
