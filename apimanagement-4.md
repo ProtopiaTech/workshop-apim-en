@@ -177,7 +177,7 @@ Note - this trace below was from the Developer portal.  I got errors when testin
 
 The find-and-replace policy finds a request or response substring and replaces it with a different substring.
 
-- Open the Colors API | ApiRandomColor operation 'Code View'
+- Open the Colors API, then open the ApiRandomColor operation 'Code View'
 - Add the outbound policy to change from "blue" to "yellow"
 - Invoke the API using the Starter product key and examine the response
 - Invoke the API using the Unlimited product key and examine the response
@@ -198,7 +198,7 @@ With Starter key and Unlimited key:
 
 Another C# example to manipulate the response body, depending on the product - with this expression a subscriber of the Starter product will only get back a subset of the information.  Other products will get the full information.
 
-- Open the Star Wars API | GetPeopleById operation 'Code View'
+- Open the Star Wars API, then open the GetPeopleById operation 'Code View'
 - Add the outbound policy to conditionally change the response body
 - Invoke the API using the Starter product key and examine the response
 - Invoke the API using the Unlimited product key and examine the response
