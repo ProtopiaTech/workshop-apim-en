@@ -14,7 +14,7 @@
 
 Analytics is available in the Azure management portal from the Analytics blade.
 
-- Look at the dashboard and detailed :  Timeline | Geography | APIs | Operations | Products | Subscriptions | Users | Requests
+- Look at the dashboard and detailed :  Timeline , Geography , APIs , Operations , Products , Subscriptions , Users , Requests
 
 ![](Images/APIMAnalytics.png)
 
