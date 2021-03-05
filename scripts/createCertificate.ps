@@ -1,0 +1,19 @@
+ #variable definitions
+$apimName = 'famcapimlab2021' 
+$apimDns = $apimName + 'azure-api.net' 
+$apimSubject = "cn=" + $apimDns
+$folderName = ".\apimlab-certs-" + $apimName
+
+#Create folder
+$f = New-Item $folderName -ItemType Directory -Force
+
+#Create certificate
+$cert = New-SelfSignedCertificate -CertStoreLocation cert:\currentuser\my -Subject $apimSubject -DnsName $apimDNS
+
+#Export pfx 
+
+$pwd = ConvertTo-SecureString -String 'somePassword' -Force -AsPlainText
+$path = 'cert:\currentuser\my\' + $cert.thumbprint
+$exportPath = $f.FullName + '\' + $apimName +'-powershellcert.pfx' 
+
+Export-PfxCertificate -cert $path -FilePath $exportPath -Password $pwd 
