@@ -6,7 +6,7 @@ This hands-on-lab will guide you through the different concepts around Azure API
 
 Index
 
-- [Part 0 - Deploy your own Colours web/api (Optional)](apimanagement-0.md)
+- [Lab Prerrequisites](apimanagement-prerrequisites.md)
 - [Part 1 - Create an API Management instance](apimanagement-1.md)
 - [Part 2 - Developer Portal and Product Management](apimanagement-2.md)
 - [Part 3 - Adding API's](apimanagement-3.md)
@@ -18,6 +18,7 @@ Index
 
 Additional Topics
 
+- [Deploy your own Colours web/api](apimanagement-A.md)
 - [API Proxy to Serverless](apimanagement-B.md)
 - [Self-hosted Gateway](apimanagement-C.md)
 - [AAD - Integration, Work In progress](apimanagement-D.md) 
