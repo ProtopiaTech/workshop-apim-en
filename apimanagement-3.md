@@ -4,7 +4,7 @@
 - [Part 1 - Create an API Management instance](apimanagement-1.md) 
 - [Part 2 - Developer Portal and Product Management](apimanagement-2.md) 
 - Part 3 - Adding API's (You are here)
-- [Part 4 - Caching and Policy Expressions](apimanagement-4.md)
+- [Part 4 - Policy Expressions](apimanagement-4.md)
 - [Part 5 - Versioning and Revisions](apimanagement-5.md)
 - [Part 6 - Analytics and Monitoring](apimanagement-6.md)
 - [Part 7 - Security](apimanagement-7.md)
@@ -51,24 +51,6 @@ Lets declare two operations
 
 ![](Images/APIMAddSWOperations.png)
 
-To get this to work from the Developer portal - we must overcome the CORS.  Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. This involves setting up a Policy - a topic that we explain in more depth in the next section.
-
-Select the Star Wars API | All Operations ... and in the Inbound processing select [Add policy]
-
-![](Images/APIMSWCORS1.png)
-
-Select [CORS]
-
-![](Images/APIMCORS2.png)
-
-Define the Policy as in the screenshot - this config is suitable for demo purposes only and ensures we are not hampered by CORS
-
-![](Images/APIMCORS3.png)
-
-Once the policy had been Saved, we can inspect it in [Code View]
-
-![](Images/APIMCORS4.png)
-
 Switch now to the Developer Portal
   - Sign in as a developer with a subscription
   - Select [Start Wars API]
@@ -104,8 +86,6 @@ Go to APIs blade and select [Add OpenAPI Specification]
 
 ![](Images/APIMAddCalcAPI2.png)
 
-- As above set a CORS policy to allow access from the Developer portal
-
 - Look at Calculator API in the Developer portal
   - Try the Add Two Integers operation
 - Look at Response / Trace
@@ -131,7 +111,6 @@ Let's use another example - the [Colors API](https://markcolorapi.azurewebsites.
 
 ![](Images/APIMAddColorAPI2.png)
 
-Remember to set a CORS policy.
 
 The swagger file did not contain the name of the host so you need to update it manually
 
@@ -157,6 +136,22 @@ Switch to the Developer portal and look at Color API
 Use [Colors website](https://markcolorweb.azurewebsites.net) which displays 500 lights.  Each light will at random intervals make a call to the RandomColor API - and then display the color returned.
 
 ![](Images/APIMColorWeb.png)
+
+First we will need to enable CORS for the domain name of the frontend. To achieve this we have to do the following:
+
+- On the left Menu, click on `APIs`
+- Then select the `All APIs` option
+- Then go to the `Inbound Processing` area
+- There you will find a `cors` policy(this was added in part 2, when we used the "Enable Cors" button)
+- Click on the `edit` icon
+
+![](Images/apim-policy-cors-all-apis.png)  
+
+Here we will se this form, where we can add the domain name of our frontend `https://markcolorweb.azurewebsites.net` or the `*` for all domains:
+
+![](Images/apim-policy-cors-all-apis2.png)  
+
+
 
 Via the menu - there is a configuration page to specify the API endpoint
 
