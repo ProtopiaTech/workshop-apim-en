@@ -382,14 +382,6 @@ Received notification in the Teams channel:
 
 ![](Images/APIMTeamsMessage.png)
 
-### Send to Azure Event Hub
-
-Using the log-to-eventhub policy enables sending any details from the request and response to an Azure Event Hub. Usage examples include audit trail of updates, usage analytics, logging, monitoring, billing, exception alerting and 3rd party integrations.
-
-The Azure Event Hubs is designed to ingress huge volumes of data, with capacity for dealing with a far higher number of events. This ensures that your API performance will not suffer due to the logging infrastructure.
-
-<https://docs.microsoft.com/en-us/azure/api-management/api-management-log-to-eventhub-sample>
-
 
 ### Aborting the processing
 
