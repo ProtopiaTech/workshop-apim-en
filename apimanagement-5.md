@@ -1,6 +1,6 @@
 # API Management - Hands-on Lab Script - part 5
 
-- [Part 0 - Deploy your own Colours web/api (Optional)](apimanagement-0.md)
+- [Lab Prerrequisites](apimanagement-prerrequisites.md)
 - [Part 1 - Create an API Management instance](apimanagement-1.md) 
 - [Part 2 - Developer Portal and Product Management](apimanagement-2.md) 
 - [Part 3 - Adding API's](apimanagement-3.md) 
