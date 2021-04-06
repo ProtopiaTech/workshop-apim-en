@@ -12,12 +12,27 @@
 
 ## Developer Portal
 
-The developer portal is an automatically generated, fully customizable website with the documentation of your APIs. It is where API consumers can discover your APIs, learn how to use them, request access, and try them out. Developer portal is located at: {apim-service-name}.developer.azure-api.net
+The developer portal is an automatically generated, fully customizable website with the documentation of your APIs. It is where API consumers can discover your APIs, learn how to use them, request access, and try them out. 
+
+### Publishing the developer portal
 
 Accessing from the link in the Overview blade of the Azure Management Portal, will display the developer portal in admin / edit mode and you can customize it.
-Using the left-side menu `Operations` Icon - select `Publish Website`.  It will then be available for users to access.
+Using the left-side menu `Portal Overview` Icon - select the `Publish` button.  It will then be available for users to access.
+
+![](Images/apim-developerportal-publish.png)
+
+### Enabling CORS for the developer portal
+
+Cross-origin resource sharing is a mechanism that allows resources on a web page to be requested from another domain, outside the domain from which the first resource was served. CORS is required to let portal visitors use the interactive console in the API reference pages and should be enabled for domains, including custom domains.
+
+CORS is enabled by using policies, we will go deep on this topic in part 4. For now we will enable this using a builtin UI. To do this, using the left-side menu `Portal Overview` Icon - select the `Enable CORS` button.
+
+![](Images/apim-developerportal-CORS.png)
+
+After publishing the portal and enabling CORS, we should access the developer portal located at: {apim-service-name}.developer.azure-api.net
 
 ![](Images/APIMDeveloperPortal.png)
+
 
 ### User Experience
 
@@ -49,6 +64,7 @@ Sign into account
 
 ![](Images/APIMDevSignin.png)
 
+
 Select Starter Product and subscribe to a "Starter" subscription
   - Check email - subscription has been accepted and some key information are provided
 
@@ -68,7 +84,7 @@ The "Unlimited" being in "submitted" state (=needs approval), you can, in Azure 
 
 It's now time to test one of the published APIs. Open the APIs page and look at the Echo API
   - Notice the developer information
-  - Test the Echo API using the GET verb  (/!\ there may be a CORS error - we will address that later)
+  - Test the Echo API using the GET verb 
 
 ![](Images/APIMDevTryAPI.png)
 
