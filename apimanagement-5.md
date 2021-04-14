@@ -16,6 +16,29 @@ Versions and revisions provide you with an elegant way to manage change and the 
 
 Revisions allow you to safely make non-breaking changes to your API. Developers who consume the API can be given details about the changes. Revisions also allow you to rollback changes.
 
+### Version
+
+#### Add a new version
+
+- Select the Star Wars API
+- Add a new version
+  - Set the name and identifier to `v2`
+  - Select the `Path` versioning scheme
+  - Add the `Starter` and `Unlimited` products
+
+![Revisions](Images/APIMVersionsAdd.png)
+![Revisions](Images/APIMVersionsCreate.png)
+
+#### Test the new version
+
+- Browse to the developer portal
+- Select APIs and choose the `v2` version of the Star Wars API
+- Notice the request URL and the inclusion of `v2` in the path
+- Test the `GetPeople` operation
+
+![Revisions](Images/APIMVersionsDevPortal.png)
+
+
 ### Revisions
 
 #### Add a new revision
@@ -48,27 +71,7 @@ The request URL should look similar to: `https://<your-apim-name>.azure-api.net/
 
 ![Revisions](Images/APIMRevisionsMakeCurrent.png)
 
-### Version
 
-#### Add a new version
-
-- Select the Star Wars API
-- Add a new version
-  - Set the name and identifier to `v2`
-  - Select the `Path` versioning scheme
-  - Add the `Starter` and `Unlimited` products
-
-![Revisions](Images/APIMVersionsAdd.png)
-![Revisions](Images/APIMVersionsCreate.png)
-
-#### Test the new version
-
-- Browse to the developer portal
-- Select APIs and choose the `v2` version of the Star Wars API
-- Notice the request URL and the inclusion of `v2` in the path
-- Test the `GetPeople` operation
-
-![Revisions](Images/APIMVersionsDevPortal.png)
 
 ---
 [Home](README.md) | [Prev](apimanagement-5.md) | [Next](apimanagement-6.md)
