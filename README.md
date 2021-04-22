@@ -18,10 +18,8 @@ Index
 
 Additional Topics
 
-- [Deploy your own Colours web/api](apimanagement-A.md)
 - [API Proxy to Serverless](apimanagement-B.md)
 - [Self-hosted Gateway](apimanagement-C.md)
-- [AAD - Integration, Work In progress](apimanagement-D.md) 
 
 Slides
 
