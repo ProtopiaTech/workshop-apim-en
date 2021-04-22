@@ -27,16 +27,8 @@ Slides
 
 - [Azure API Management Slides](/slides/APIM.pptx)
 
-Authors
-
-- [Mark Harrison](http://github.com/markharrison)
-- [David Barkol](https://github.com/dbarkol)
-- [Osvaldo Dailbert](https://github.com/odaibert)
-- [Fernando Mejía](https://github.com/feranto)
-- [Louis-Guillaume MORAND](https://github.com/lgmorand)
-
 [Based on the original APIM Lab by Mark Harrison.](https://github.com/markharrison/Lab_APIM_Original)
 
-Last Updated: 24/Aug/2020
+Last Updated: 22/Apr/2021
 
 ---
